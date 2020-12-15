@@ -4,7 +4,7 @@ import {Input} from 'react-native-elements';
 import ContextNavigation from "../screens/context";
 
 const { height, width } = Dimensions.get('window');
-export default function Login() {
+export default function Login({navigation}) {
     const [user, setUser] = useState("-------");
     const [password, setPassword] = useState("------");
     const {login} = React.useContext(ContextNavigation);
@@ -32,7 +32,7 @@ export default function Login() {
                     style={{textAlign: "center"}}>Ingresar</Text></TouchableOpacity>
             </View>
             <View style={styles.textInput}>
-                <TouchableOpacity style={styles.registerButton} onPress={register}><Text
+                <TouchableOpacity style={styles.registerButton} onPress={()=>navigation.navigate('Registro')}><Text
                     style={{textAlign: "center"}}>Registrarse</Text></TouchableOpacity>
             </View>
 

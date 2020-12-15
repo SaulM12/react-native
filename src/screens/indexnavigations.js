@@ -1,21 +1,30 @@
-import React, {useState, useMemo} from 'react';
-import {NavigationContainer} from "@react-navigation/native";
-import {createStackNavigator} from '@react-navigation/stack';
+import React, { useState, useMemo } from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from '@react-navigation/stack';
 import ContextNavigation from "./context";
 import Login from "../principal/login";
 import Principal from "./stacknavigation";
+import Register from '../components/register';
 
 const RootStack = createStackNavigator();
-
-function RootStackScreen({user}) {
+const Stack = createStackNavigator();
+function Auth() {
+    return (
+        <Stack.Navigator headerMode="none">
+            <Stack.Screen name="Auth" component={Login} headerMode="none" />
+            <Stack.Screen name="Registro" component={Register} headerMode="none" />
+        </Stack.Navigator>
+    )
+}
+function RootStackScreen({ user }) {
     return (
         <RootStack.Navigator headerMode="none">
             {
                 user === null ? (
-                    <RootStack.Screen name="Auth" component={Login} headerMode="none"/>
+                    <RootStack.Screen name="App" component={Auth} headerMode="none" />
                 ) : (
-                    <RootStack.Screen name="App" component={Principal} headerMode="none"/>
-                ) 
+                        <RootStack.Screen name="App" component={Principal} headerMode="none" />
+                    )
 
 
             }
@@ -38,7 +47,7 @@ function IndexAppScreen() {
     return (
         <ContextNavigation.Provider value={contextNavigation}>
             <NavigationContainer>
-                <RootStackScreen user={user}/>
+                <RootStackScreen user={user} />
             </NavigationContainer>
         </ContextNavigation.Provider>
     )
