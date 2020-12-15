@@ -21,7 +21,7 @@ function RootStackScreen({ user }) {
         <RootStack.Navigator headerMode="none">
             {
                 user === null ? (
-                    <RootStack.Screen name="App" component={Auth} headerMode="none" />
+                    <RootStack.Screen name="Authe" component={Auth} headerMode="none" />
                 ) : (
                         <RootStack.Screen name="App" component={Principal} headerMode="none" />
                     )
