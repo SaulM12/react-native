@@ -2,13 +2,29 @@ import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity, SafeAreaView, Text, Dimensions, Platform, StatusBar} from 'react-native';
 import {Input} from 'react-native-elements';
 import ContextNavigation from "../screens/context";
-
+import firebase from "../firebase/firebase";
+import "firebase/firestore";
 const { height, width } = Dimensions.get('window');
 export default function Login({navigation}) {
     const [user, setUser] = useState("-------");
     const [password, setPassword] = useState("------");
     const {login} = React.useContext(ContextNavigation);
     const {register} = React.useContext(ContextNavigation);
+    const users = firebase.firestore().collection('user');
+
+    function ingresar () {
+        users.where('userUsuario', '==', user).get()
+        .then((snapshot) => {
+            snapshot.forEach((doc) => {
+                if (doc.data().passwordUsuario == password){
+                    console.log(doc.id);
+                    login()
+                }
+            })
+        }).catch((err) =>{
+            console.log('Error getting documents', err);
+        })
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -28,7 +44,7 @@ export default function Login({navigation}) {
             </View>
 
             <View style={styles.textInput}>
-                <TouchableOpacity style={styles.openButton} onPress={login}><Text
+                <TouchableOpacity style={styles.openButton} onPress={ingresar}><Text
                     style={{textAlign: "center"}}>Ingresar</Text></TouchableOpacity>
             </View>
             <View style={styles.textInput}>

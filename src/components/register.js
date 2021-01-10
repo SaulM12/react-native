@@ -1,11 +1,26 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity, SafeAreaView, Text, Dimensions, Platform, StatusBar} from 'react-native';
 import {Input} from 'react-native-elements';
+import firebase from "../firebase/firebase";
+import "firebase/firestore";
 
 const { height, width } = Dimensions.get('window');
-export default function Register() {
 
+export default function Register({navigation}) {
+    const [user, setUser] = useState("-------");
+    const [mail, setMail] = useState("-------");
+    const [password, setPassword] = useState("------");
+    const users = firebase.firestore().collection('user');
 
+    function register() {
+        let usuario = {
+            userUsuario: user,
+            userMail: mail,
+            passwordUsuario: password
+        }
+        users.doc().set(usuario);
+        navigation.navigate('login')
+    }
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.tittle}>Registro</Text>
@@ -18,7 +33,7 @@ export default function Register() {
             <View style={styles.textInput}>
                 <Input
                     placeholder='Correo electrónico'
-                    onChangeText={returnOnChangeText => setUser(returnOnChangeText)}
+                    onChangeText={returnOnChangeText => setMail(returnOnChangeText)}
                 />
             </View>
             
@@ -30,7 +45,7 @@ export default function Register() {
                     onChangeText={returnOnChangeText => setPassword(returnOnChangeText)} />
             </View>
             <View style={styles.textInput}>
-                <TouchableOpacity style={styles.registerButton}><Text
+                <TouchableOpacity style={styles.registerButton} onPress={register}><Text
                     style={{textAlign: "center"}}>Registrarse</Text></TouchableOpacity>
             </View>
 
