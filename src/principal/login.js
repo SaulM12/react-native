@@ -6,17 +6,17 @@ import firebase from "../firebase/firebase";
 import "firebase/firestore";
 const { height, width } = Dimensions.get('window');
 export default function Login({navigation}) {
-    const [user, setUser] = useState("-------");
+    const [name, setUser] = useState("-------");
     const [password, setPassword] = useState("------");
     const {login} = React.useContext(ContextNavigation);
     const {register} = React.useContext(ContextNavigation);
-    const users = firebase.firestore().collection('user');
+    const user = firebase.firestore().collection('user');
 
-    function ingresar () {
-        users.where('userUsuario', '==', user).get()
+    function loginUser () {
+        user.where('userName', '==', name).get()
         .then((snapshot) => {
             snapshot.forEach((doc) => {
-                if (doc.data().passwordUsuario == password){
+                if (doc.data().userPassword == password){
                     console.log(doc.id);
                     login()
                 }
@@ -44,7 +44,7 @@ export default function Login({navigation}) {
             </View>
 
             <View style={styles.textInput}>
-                <TouchableOpacity style={styles.openButton} onPress={ingresar}><Text
+                <TouchableOpacity style={styles.openButton} onPress={loginUser}><Text
                     style={{textAlign: "center"}}>Ingresar</Text></TouchableOpacity>
             </View>
             <View style={styles.textInput}>

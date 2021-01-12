@@ -4,14 +4,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ContextNavigation from "./context";
 import Login from "../principal/login";
 import Principal from "./stacknavigation";
-import Register from '../components/register';
+import Register from '../principal/register';
 
 const RootStack = createStackNavigator();
 const Stack = createStackNavigator();
 function Auth() {
     return (
         <Stack.Navigator headerMode="none">
-            <Stack.Screen name="Auth" component={Login} headerMode="none" />
+            <Stack.Screen name="login" component={Login} headerMode="none" />
             <Stack.Screen name="Registro" component={Register} headerMode="none" />
         </Stack.Navigator>
     )

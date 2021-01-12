@@ -7,18 +7,18 @@ import "firebase/firestore";
 const { height, width } = Dimensions.get('window');
 
 export default function Register({navigation}) {
-    const [user, setUser] = useState("-------");
+    const [name, setUser] = useState("-------");
     const [mail, setMail] = useState("-------");
     const [password, setPassword] = useState("------");
     const users = firebase.firestore().collection('user');
 
     function register() {
-        let usuario = {
-            userUsuario: user,
+        let user = {
+            userName: name,
             userMail: mail,
-            passwordUsuario: password
+            userPassword: password
         }
-        users.doc().set(usuario);
+        users.doc().set(user);
         navigation.navigate('login')
     }
     return (
