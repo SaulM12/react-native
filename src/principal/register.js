@@ -3,6 +3,8 @@ import {StyleSheet, View, TouchableOpacity, SafeAreaView, Text, Dimensions, Plat
 import {Input} from 'react-native-elements';
 import firebase from "../firebase/firebase";
 import "firebase/firestore";
+var md5 = require('md5');
+
 
 const { height, width } = Dimensions.get('window');
 
@@ -12,11 +14,11 @@ export default function Register({navigation}) {
     const [password, setPassword] = useState("------");
     const users = firebase.firestore().collection('user');
 
-    function register() {
+    function registerUser() {
         let user = {
             userName: name,
             userMail: mail,
-            userPassword: password
+            userPassword:md5(password)
         }
         users.doc().set(user);
         navigation.navigate('login')
@@ -45,7 +47,7 @@ export default function Register({navigation}) {
                     onChangeText={returnOnChangeText => setPassword(returnOnChangeText)} />
             </View>
             <View style={styles.textInput}>
-                <TouchableOpacity style={styles.registerButton} onPress={register}><Text
+                <TouchableOpacity style={styles.registerButton} onPress={registerUser}><Text
                     style={{textAlign: "center"}}>Registrarse</Text></TouchableOpacity>
             </View>
 

@@ -2,38 +2,27 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 
 const { width: screenWidth } = Dimensions.get('window')
-export default function ItemList2(props) {
-    
+export default function ItemRegions(props) {
     return (
         <View>
             <TouchableOpacity
                 onPress={() => {
-                    props.navigation.navigate('item',
-                        {
-                            texto: props.element
-                        }
-                    )
+                    props.navigation.navigate('Places', {
+                        id: props.element.id
+                    })
                 }}
 
                 style={styles.item}>
-
-                <View style={styles.containerImage}>
-                    <Image style={styles.image} source={{ uri: props.element.photo }} />
-                </View>
-
                 <View style={styles.containerInfo}>
                     <View>
                         <Text style={styles.Text}>
                             {props.element.name}
                         </Text>
                     </View>
-                    <View>
-                        <Text style={styles.description}>
-                            {props.element.description}
-                        </Text>
-                    </View>
                 </View>
-
+                <View style={styles.containerImage}>
+                    <Image style={styles.image} source={{ uri: props.element.image }} />
+                </View>
             </TouchableOpacity>
         </View>
     );
@@ -46,36 +35,26 @@ const styles = StyleSheet.create({
         padding: 2,
         marginVertical: 8,
         marginHorizontal: 5,
-        flexDirection: 'row',
+        flexDirection: 'column',
         width: screenWidth - 8
     },
     containerImage: {
-
-        marginTop: 10,
+        flex: 2,
+        marginTop: 5,
         padding: 2,
 
     },
     image: {
-        width: 80,
-        height: 80,
+        width: screenWidth - 14,
+        height: 120,
     },
     containerInfo: {
-        marginTop: 4,
-        marginLeft: 8,
-        textAlign: 'left',
-        flexDirection: 'column',
+        alignItems: 'center',
     },
     Text: {
         fontSize: 25,
-        justifyContent: 'center',
-        fontFamily: 'serif',
-
-    },
-    Description: {
-        flex: 1,
-        fontSize: 15,
-        fontFamily: 'serif',
-
+        fontFamily:'serif',
+      
     }
 
 })

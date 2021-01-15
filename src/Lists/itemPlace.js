@@ -3,7 +3,7 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { useRoute } from '@react-navigation/native';
 const { width: screenWidth } = Dimensions.get('window')
 const { height: screenHeight } = Dimensions.get('window')
-export default function Item() {
+export default function ItemNavigate() {
 
     let route = useRoute();
     let item = route.params.texto;
@@ -11,7 +11,7 @@ export default function Item() {
     return (
         <View style={styles.item}>
              <View style={styles.containerImage}>
-                <Image style={styles.image} source={{ uri: item.photo }} />
+                <Image style={styles.image} source={{ uri: item.image }} />
             </View>
             <View>
                 <Text style={styles.Text}>
@@ -20,7 +20,7 @@ export default function Item() {
             </View>
             <View style={styles.containerInfo}>
                 <Text style={styles.description}>
-                    {item.description}
+                    {item.ubication}
                 </Text>
             </View>
            

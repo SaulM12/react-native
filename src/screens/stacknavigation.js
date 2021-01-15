@@ -1,17 +1,17 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import ListPage from '../Lista/lista';
-import Item from "../Lista/item";
-import ListPage2 from '../Lista/lista2';
+import NavigationRegions from '../Lists/regions';
+import ItemNavigate from "../Lists/itemPlace";
+import NavigationPlaces from '../components/places';
 
 const Stack = createStackNavigator();
 
 
-export default function Principal() {
+export default function PrincipalScreens() {
     return (
 
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={ListPage} options={{
+            <Stack.Screen name="Home" component={NavigationRegions} options={{
                 title: 'Regiones',
                 headerStyle: {
                     backgroundColor: '#1D419E',
@@ -23,7 +23,7 @@ export default function Principal() {
                 }
 
             }} />
-            <Stack.Screen name="list2" component={ListPage2} options={{
+            <Stack.Screen name="Places" component={NavigationPlaces} options={{
                 title: 'Lugares',
                 headerStyle: {
                     backgroundColor: '#058394',
@@ -34,7 +34,7 @@ export default function Principal() {
                     fontWeight: 'bold',
                 },
             }} />
-            <Stack.Screen name="item" component={Item} options={{
+            <Stack.Screen name="Description" component={ItemNavigate} options={{
                 title: 'Información',
                 headerStyle: {
                     backgroundColor: '#29B0C2'

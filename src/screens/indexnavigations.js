@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 import ContextNavigation from "./context";
 import Login from "../principal/login";
-import Principal from "./stacknavigation";
+import PrincipalScreens from "./stacknavigation";
 import Register from '../principal/register';
 
 const RootStack = createStackNavigator();
@@ -12,7 +12,7 @@ function Auth() {
     return (
         <Stack.Navigator headerMode="none">
             <Stack.Screen name="login" component={Login} headerMode="none" />
-            <Stack.Screen name="Registro" component={Register} headerMode="none" />
+            <Stack.Screen name="Register" component={Register} headerMode="none" />
         </Stack.Navigator>
     )
 }
@@ -23,7 +23,7 @@ function RootStackScreen({ user }) {
                 user === null ? (
                     <RootStack.Screen name="Authe" component={Auth} headerMode="none" />
                 ) : (
-                        <RootStack.Screen name="App" component={Principal} headerMode="none" />
+                        <RootStack.Screen name="App" component={PrincipalScreens} headerMode="none" />
                     )
 
 
@@ -39,6 +39,9 @@ function IndexAppScreen() {
             return {
                 login: () => {
                     setUser("1");
+                },
+                logout: () => {
+                    setUser(null);
                 }
             }
         }
