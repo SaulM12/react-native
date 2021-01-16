@@ -21,8 +21,11 @@ export default function NavigationPlaces({ navigation }) {
                     id: doc.id,
                     name: doc.data().name,
                     image: doc.data().image,
+                    image2: doc.data().image2,
+                    image3: doc.data().image3,
                     ubication: doc.data().ubication,
-                    region: doc.data().region                  
+                    region: doc.data().region ,
+                    description: doc.data().description ,              
                 } 
                 
                     placesList.push(PlacesFromFirebase)

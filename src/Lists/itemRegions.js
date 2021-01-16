@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 
+
 const { width: screenWidth } = Dimensions.get('window')
+
 export default function ItemRegions(props) {
     return (
         <View>
@@ -50,6 +52,14 @@ const styles = StyleSheet.create({
     },
     containerInfo: {
         alignItems: 'center',
+    },
+    registerButton: {
+        backgroundColor: "#FFF",
+        borderRadius: 5,
+        padding: 8,
+        elevation: 2,
+        margin: 20,
+        textAlign: 'center'
     },
     Text: {
         fontSize: 25,

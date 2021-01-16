@@ -4,6 +4,7 @@ import NavigationRegions from '../Lists/regions';
 import ItemNavigate from "../Lists/itemPlace";
 import NavigationPlaces from '../components/places';
 
+
 const Stack = createStackNavigator();
 
 

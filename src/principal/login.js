@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-    StyleSheet, View, TouchableOpacity, SafeAreaView, Text, Dimensions, Platform, StatusBar, Modal,
+    StyleSheet, View, TouchableOpacity, SafeAreaView, Text, Platform, StatusBar, Modal,
     Alert, TouchableHighlight
 } from 'react-native';
 import { Input } from 'react-native-elements';
@@ -20,7 +20,7 @@ export default function Login({ navigation }) {
             .then((snapshot) => {
                 snapshot.forEach((doc) => {
                     if (doc.data().userPassword === md5(password)) {
-                        console.log(doc.id);
+
                         login()
                     } else {
                         setModalVisible(true);
@@ -49,7 +49,8 @@ export default function Login({ navigation }) {
                             onPress={() => {
                                 setModalVisible(!modalVisible);
                             }}
-                        >                            <Text style={styles.textStyle}>Aceptar</Text>
+                        >
+                            <Text style={styles.textStyle}>Aceptar</Text>
                         </TouchableHighlight>
                     </View>
                 </View>
